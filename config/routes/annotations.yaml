@@ -1,0 +1,9 @@
+website:
+    resource: '../../src/Website/Controller/'
+    type: annotation
+    prefix: /
+
+panel:
+    resource: '../../src/Panel/Controller/'
+    type: annotation
+    prefix: /x-panel/
