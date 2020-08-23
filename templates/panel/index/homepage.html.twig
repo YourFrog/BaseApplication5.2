@@ -1,6 +1,6 @@
-Strona główna panelu
+{% extends 'panel/layout.html.twig' %}
 
-<ul>
-    <li><a href="{{ path('website.homepage') }}">Strona główna</a></li>
-    <li><a href="{{ path('website.user.logout') }}">Wyloguj</a></li>
-</ul>
+{% block content %}
+
+        <h3>Strona główna panelu</h3>
+{% endblock %}

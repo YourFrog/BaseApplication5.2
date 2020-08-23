@@ -1,10 +1,14 @@
-<ul>
-    <li><a href="{{ path('website.homepage') }}">Strona główna</a></li>
-    <li><a href="{{ path('website.user.logout') }}">Wyloguj</a></li>
-</ul>
+{% extends 'website/layout.html.twig' %}
 
-{% if is_granted('ROLE_ADMIN') %}
-<ul>
-    <li><a href="{{ path('panel.homepage') }}">Przejdź do panelu</a></li>
-</ul>
-{% endif %}
+{% block content %}
+    <ul>
+        <li><a href="{{ path('website.homepage') }}">Strona główna</a></li>
+        <li><a href="{{ path('website.user.logout') }}">Wyloguj</a></li>
+    </ul>
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <ul>
+        <li><a href="{{ path('panel.homepage') }}">Przejdź do panelu</a></li>
+    </ul>
+    {% endif %}
+{% endblock %}

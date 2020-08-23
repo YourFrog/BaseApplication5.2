@@ -38,3 +38,9 @@ services:
     YourFrog\Website\Controller\:
         resource: '../src/Website/Controller'
         tags: ['controller.service_arguments']
+
+
+    YourFrog\Panel\Repository\Contest\SettingsRepository:
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - YourFrog\Panel\Entity\Contest\Settings

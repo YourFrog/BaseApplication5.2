@@ -1,10 +1,18 @@
-import '../scss/admin.scss';
+import '../../scss/x-panel/admin.scss';
 import 'eonasdan-bootstrap-datetimepicker';
 import 'typeahead.js';
 import Bloodhound from "bloodhound-js";
 import 'bootstrap-tagsinput';
 
+import '@popperjs/core'
+import 'bootstrap/dist/js/bootstrap.min'
+
+import "@fortawesome/fontawesome-free/js/all.min";
+
 $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="popover"]').popover()
+
     // Datetime picker initialization.
     // See https://eonasdan.github.io/bootstrap-datetimepicker/
     $('[data-toggle="datetimepicker"]').datetimepicker({

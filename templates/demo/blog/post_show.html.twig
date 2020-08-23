@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block body_id 'blog_post_show' %}
 
@@ -68,7 +68,7 @@
     {% endif %}
 
     {# the parent() function includes the contents defined by the parent template
-      ('base.html.twig') for this block ('sidebar'). This is a very convenient way
+      ('layout.html.twig') for this block ('sidebar'). This is a very convenient way
       to share common contents in different templates #}
     {{ parent() }}
 
