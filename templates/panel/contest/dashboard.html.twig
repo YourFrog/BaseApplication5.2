@@ -1,5 +1,9 @@
 {% extends 'panel/layout.html.twig' %}
 
+{% block javascripts %}
+    {{ encore_entry_script_tags('x-panel/contest/chart') }}
+{% endblock %}
+
 {% block content %}
     <div class="alert alert-warning">
         Głosowanie zakończone
@@ -42,10 +46,13 @@
                         <a id="waiting-for-confirm-tab" class="nav-link active" data-toggle="tab" role="tab" href="#waiting-for-confirm">Oczekujące na potwierdzenie (2)</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a id="accept-today-tab" class="nav-link" data-toggle="tab" role="tab" href="#waiting-for-accept">Zaakceptowane (dziś)</a>
+                        <a id="accept-today-tab" class="nav-link" data-toggle="tab" role="tab" href="#accept-today">Zaakceptowane (dziś)</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a id="accept-yesterday-tab" class="nav-link" data-toggle="tab" role="tab" href="#waiting-for-accept">Zaakceptowane (wczoraj)</a>
+                        <a id="accept-yesterday-tab" class="nav-link" data-toggle="tab" role="tab" href="#accept-yesterday">Zaakceptowane (wczoraj)</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a id="accept-all-tab" class="nav-link" data-toggle="tab" role="tab" href="#accept-all">Zaakceptowane (wczoraj)</a>
                     </li>
                 </ul>
             </div>
@@ -77,10 +84,35 @@
                         </table>
                     </div>
                     <div class="tab-pane fade" id="accept-today" role="tabpanel" aria-labelledby="waiting-for-accept-tab">Tab 2</div>
-                    <div class="tab-pane fade" id="accept-yesterday-tab" role="tabpanel" aria-labelledby="confirmed-tab">Tab 3</div>
+                    <div class="tab-pane fade" id="accept-yesterday" role="tabpanel" aria-labelledby="confirmed-tab">Tab 3</div>
+                    <div class="tab-pane fade" id="accept-all" role="tabpanel" aria-labelledby="confirmed-tab">Tab 4</div>
                 </div>
                 </p>
             </div>
+        </div>
+
+        <div class="col col-6 mt-3 mb-3 no-padding">
+            <div class="card">
+                <div class="card-header">
+                    Procentowy rozkład głosów w podziale na godziny
+                </div>
+                <div class="card-body">
+                    <canvas class="js-myChart" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col col-6 mt-3 mb-3 no-padding">
+            <div class="card">
+                <div class="card-header">
+                    Unikalne adresy IP w podziale na godziny
+                </div>
+                <div class="card-body">
+                    <canvas class="js-myChart" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="container-fluid">

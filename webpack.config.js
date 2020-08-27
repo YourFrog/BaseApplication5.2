@@ -22,6 +22,7 @@ Encore
     .enableVersioning(false)
     .addEntry('website/app', './assets/js/website/app.js')
     .addEntry('x-panel/admin', './assets/js/x-panel/admin.js')
+    .addEntry('x-panel/contest/chart', './assets/js/x-panel/contest/chart.js')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .enableIntegrityHashes(Encore.isProduction())
