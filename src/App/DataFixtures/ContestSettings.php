@@ -27,8 +27,9 @@ class ContestSettings extends Fixture
         $settings->setVoteFinishTime($now);
 
         $settings->setVoteMode(Panel\Entity\Contest\Settings::MODE_UNREGISTER_USERS);
+        $settings->setVoteConfirmationTime(60 * 60);
 
-        $manager->persist($settings);
+//        $manager->persist($settings);
         $manager->flush();
     }
 }

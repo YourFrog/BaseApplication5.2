@@ -15,6 +15,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Settings
 {
+    const ACCEPT_APPLICATION_MANUAL = 'manual';
+    const ACCEPT_APPLICATION_AUTOMATIC = 'automatic';
+    const ACCEPT_APPLICATION_CONFIRMATION = 'confirmation';
+    const ACCEPT_APPLICATION_MANUAL_WITH_CONFIRMATION = 'manual_with_confirmation';
+    const ACCEPT_APPLICATION_AUTOMATIC_WITH_CONFIRMATION = 'automatic_with_confirmation';
+
     // Głosować mogą jedynie zarejestrowani użytkownicy
     const MODE_REGISTER_USERS = 'register.users';
 
@@ -74,6 +80,15 @@ class Settings
      * @ORM\Column(name="vote_mode", type="string", nullable=false)
      */
     private $voteMode;
+
+    /**
+     *  Czas na potwierdzenie głosu
+     *
+     * @var int
+     *
+     * @ORM\Column(name="vote_confirmation_time", type="integer", nullable=false)
+     */
+    private $voteConfirmationTime;
 
     /**
      * @param DateTime $registerStartTime
@@ -153,5 +168,21 @@ class Settings
     public function getVoteMode(): string
     {
         return $this->voteMode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getVoteConfirmationTime(): int
+    {
+        return $this->voteConfirmationTime;
+    }
+
+    /**
+     * @param int $voteConfirmationTime
+     */
+    public function setVoteConfirmationTime(int $voteConfirmationTime): void
+    {
+        $this->voteConfirmationTime = $voteConfirmationTime;
     }
 }

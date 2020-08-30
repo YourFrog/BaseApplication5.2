@@ -2,17 +2,16 @@
 
 namespace YourFrog\Panel\Service\Contest;
 
-use Exception;
+use YourFrog\Panel\Exceptions\Contest\SettingsNotFoundException;
 use YourFrog\Panel\Entity;
 use YourFrog\Panel\Repository;
-use Doctrine\ORM\EntityManagerInterface;
 
 /**
- *  Serwis wykorzystywany do pobierania ustawień serwisu
+ *  Serwis sprawdzający czy istnieje konfiguracja konkursu
  *
  * @package YourFrog\Panel\Service\Contest
  */
-class GetContestSettingsService
+class ContestSettingsService
 {
     /**
      * @var Repository\Contest\SettingsRepository
@@ -33,15 +32,32 @@ class GetContestSettingsService
      *  Pobranie ustawień zgłoszenia konkursowego
      *
      * @return Entity\Contest\Settings
+     *
+     * @throws SettingsNotFoundException
      */
-    public function getSettings(): Entity\Contest\Settings
+    public function get(): Entity\Contest\Settings
     {
         $items = $this->repository->findAll();
 
+        if( count($items) == 0 ) {
+            throw new SettingsNotFoundException("Settings not found");
+        }
+
         if( count($items) > 1 ) {
-            throw new Exception("Too much contest settings");
+            throw new SettingsNotFoundException("Too much contest settings");
         }
 
         return $items[0];
+    }
+
+    /**
+     *  Sprawdzenie czy istnieje konfiguracja konkursu
+     *
+     * @return bool
+     */
+    public function has(): bool
+    {
+        $settings = $this->repository->findAll();
+        return count($settings) > 0;
     }
 }
