@@ -8,10 +8,14 @@
     <h3>Konfiguracja</h3>
     <table class="table">
         <tbody>
-            <tr>
-                <td>Zgłoszenia można rejestrować</td>
-                <td>{{ settings.registerStartTime.format('Y-m-d H:i:s') }}</td>
-            </tr>
+        <tr>
+            <td>Czas na potwierdzenie głosu</td>
+            <td>{{ settings.voteConfirmationTime }} sekund</td>
+        </tr>
+        <tr>
+            <td>Zgłoszenia można rejestrować</td>
+            <td>{{ settings.registerStartTime.format('Y-m-d H:i:s') }}</td>
+        </tr>
             <tr>
                 <td>Koniec rejestracji zgłoszeń</td>
                 <td>{{ settings.registerFinishTime.format('Y-m-d H:i:s') }}</td>
