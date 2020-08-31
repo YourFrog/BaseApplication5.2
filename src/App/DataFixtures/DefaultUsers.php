@@ -5,7 +5,7 @@ namespace YourFrog\App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use YourFrog\App\Entity\User;
+use YourFrog\App\Entity;
 
 /**
  *  Domyślne dane użytkowników
@@ -31,7 +31,7 @@ class DefaultUsers extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-        $user = new User();
+        $user = new Entity\Security\User();
         $user->setFullName('Administrator Techniczny');
         $user->setUsername('admin');
         $user->setPassword($this->passwordEncoder->encodePassword($user, 'NG3yX3_qJ~w{VfhF'));

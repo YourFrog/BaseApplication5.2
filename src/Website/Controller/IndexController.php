@@ -37,6 +37,7 @@ class IndexController extends AbstractController
 
         $params = [];
         $params['last_username'] = $helper->getLastUsername();
+        $params['error'] = $helper->getLastAuthenticationError(false) ? $helper->getLastAuthenticationError()->getMessage() : null;
 
         return $this->render('website/index/homepage.html.twig', $params);
     }

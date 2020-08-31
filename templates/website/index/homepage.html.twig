@@ -5,6 +5,9 @@
 
     <div class="col col-2">
         {% if not is_granted('ROLE_USER') %}
+        {% if error %}
+            <div class="alert-warning">{{ error }}</div>
+        {% endif %}
         <form action="{{ path('website.homepage') }}" method="post">
             <fieldset>
                 <legend><i class="fa fa-lock" aria-hidden="true"></i> {{ 'title.login'|trans }}</legend>

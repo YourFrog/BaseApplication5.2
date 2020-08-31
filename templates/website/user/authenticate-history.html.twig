@@ -1,0 +1,39 @@
+{% extends 'website/layout.html.twig' %}
+
+{% block content %}
+    <ul>
+        <li><a href="{{ path('website.homepage') }}">Strona główna</a></li>
+    </ul>
+
+    <ul>
+        <li><a href="{{ path('website.user.authenticate-history') }}">Historia logowań</a></li>
+        <li><a href="{{ path('website.user.logout') }}">Wyloguj</a></li>
+    </ul>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <ul>
+            <li><a href="{{ path('panel.homepage') }}">Przejdź do panelu</a></li>
+        </ul>
+    {% endif %}
+
+    <table class="table authenticate-history">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>IP</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.date.format('Y-m-d H:i:s') }}</td>
+                    <td>{{ item.ip }}</td>
+                    <td>{{ item.type }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

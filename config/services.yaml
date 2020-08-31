@@ -44,3 +44,9 @@ services:
         factory: ['@doctrine.orm.default_entity_manager', getRepository]
         arguments:
             - YourFrog\Panel\Entity\Contest\Settings
+
+    YourFrog\App\Service\Authentication\StoreIP:
+        class: YourFrog\App\Service\Authentication\KeepAuthentication
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login, method: onSecurityInteractiveLogin }
+            - { name: kernel.event_listener, event: security.authentication.failure, method: onSecurityFailure }

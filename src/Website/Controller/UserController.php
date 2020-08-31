@@ -5,6 +5,7 @@ namespace YourFrog\Website\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use YourFrog\App\Entity\Security\AccountAuthenticationHistory;
 
 /**
  *  Kontroller obsługujący użytkowników
@@ -25,6 +26,17 @@ class UserController extends AbstractController
     public function dashboard(): Response
     {
         return $this->render('website/user/dashboard.html.twig');
+    }
+
+    /**
+     * @Route("/authenticate-history", name="website.user.authenticate-history")
+     */
+    public function authenticateHistory(): Response
+    {
+        $params = [];
+        $params['items'] = $this->getDoctrine()->getManager()->getRepository(AccountAuthenticationHistory::class)->findAll();
+
+        return $this->render('website/user/authenticate-history.html.twig', $params);
     }
 
     /**
