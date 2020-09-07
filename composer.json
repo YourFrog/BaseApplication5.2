@@ -84,9 +84,14 @@
             "@auto-scripts"
         ],
         "prepare-environment": [
-            "php bin/console doctrine:schema:drop --force --full-database",
-            "php bin/console doctrine:schema:update --force",
-            "php bin/console doctrine:fixtures:load --purge-with-truncate --no-interaction"
+            "php bin/console doctrine:schema:drop --force --full-database --env=dev",
+            "php bin/console doctrine:schema:update --force --env=dev",
+            "php bin/console doctrine:fixtures:load --purge-with-truncate --no-interaction --env=dev"
+        ],
+        "run-fast-test": [
+            "php bin/console doctrine:schema:drop --force --full-database --env=test",
+            "php bin/console doctrine:schema:update --force --env=test",
+            "php bin/console doctrine:fixtures:load --purge-with-truncate --no-interaction --env=test"
         ]
     },
     "conflict": {
@@ -96,6 +101,9 @@
         "symfony": {
             "allow-contrib": true,
             "require": "5.1.*"
+        },
+        "application": {
+            "env": "dev"
         }
     }
 }

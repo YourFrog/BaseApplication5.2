@@ -23,6 +23,11 @@ security:
             # this firewall applies to all URLs
             pattern: ^/
 
+            # if you want, disable storing the user in the session
+            # stateless: true
+
+            # ...
+
             # but the firewall does not require login on every page
             # denying access is done in access_control or in your controllers
             anonymous: true
@@ -51,6 +56,8 @@ security:
                 path: website.user.logout
                 # The name of the route to redirect to after logging out
                 target: website.homepage
+
+            user_checker: YourFrog\App\Security\CounterOfLoginFailsChecker
 
     # Used to restrict access for large sections of your site
     # Note: Only the *first* access control that matches will be used

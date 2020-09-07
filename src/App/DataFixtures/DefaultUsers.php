@@ -31,14 +31,24 @@ class DefaultUsers extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-        $user = new Entity\Security\User();
-        $user->setFullName('Administrator Techniczny');
-        $user->setUsername('admin');
-        $user->setPassword($this->passwordEncoder->encodePassword($user, 'NG3yX3_qJ~w{VfhF'));
-        $user->setEmail('pawel.stelmasiak.91@gmail.com');
-        $user->setRoles(['ROLE_ADMIN']);
+        $users = [
+            ['fullname' => 'Administrator Techniczny', 'username' => 'admin', 'password' => 'NG3yX3_qJ~w{VfhF', 'email' => 'pawel.stelmasiak.91@gmail.com', 'roles' => ['ROLE_ADMIN']],
+            ['fullname' => 'Administrator Techniczny', 'username' => 'admincc', 'password' => 'NG3yX3_qJ~w{VfhF', 'email' => 'pawel.stelmasiak.91+1@gmail.com', 'roles' => ['ROLE_ADMIN']],
+            ['fullname' => 'Zwyczajny użytkownik', 'username' => 'user', 'password' => 'NG3yX3_qJ~w{VfhF', 'email' => 'pawel.stelmasiak.91+2@gmail.com', 'roles' => ['ROLE_USER']],
+        ];
 
-        $manager->persist($user);
+        foreach($users as $item) {
+            $user = new Entity\Security\User();
+            $user->setFullName($item['fullname']);
+            $user->setUsername($item['username']);
+            $user->setPassword($this->passwordEncoder->encodePassword($user, $item['password']));
+            $user->setEmail($item['email']);
+            $user->setRoles($item['roles']);
+            $user->setSeriesOfFailsLogin(0);
+
+            $manager->persist($user);
+        }
+
         $manager->flush();
     }
 }

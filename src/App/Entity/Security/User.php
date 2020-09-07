@@ -78,6 +78,15 @@ class User implements UserInterface, \Serializable
      */
     private $roles = [];
 
+    /**
+     *  Ilość błędnych logowań pod rząd
+     *
+     * @var int
+     *
+     * @ORM\Column(type="integer", name="series_of_fails_login", nullable=false)
+     */
+    private $seriesOfFailsLogin;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -184,5 +193,21 @@ class User implements UserInterface, \Serializable
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
         [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+    /**
+     * @return int
+     */
+    public function getSeriesOfFailsLogin(): int
+    {
+        return $this->seriesOfFailsLogin;
+    }
+
+    /**
+     * @param int $seriesOfFailsLogin
+     */
+    public function setSeriesOfFailsLogin(int $seriesOfFailsLogin): void
+    {
+        $this->seriesOfFailsLogin = $seriesOfFailsLogin;
     }
 }

@@ -1,0 +1,2 @@
+parameters:
+  app.security.maximum_login_fails: 3

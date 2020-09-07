@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @package YourFrog\App\Entity\Security
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="YourFrog\App\Repository\Security\AccountAuthenticationHistoryRepository")
  * @ORM\Table(schema="security", name="account_authentication")
  */
 class AccountAuthenticationHistory

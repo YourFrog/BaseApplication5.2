@@ -2,6 +2,7 @@
 
 namespace YourFrog\Website\Controller;
 
+use YourFrog\App\Repository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,11 +31,13 @@ class UserController extends AbstractController
 
     /**
      * @Route("/authenticate-history", name="website.user.authenticate-history")
+     *
+     * @param Repository\Security\AccountAuthenticationHistoryRepository $repository
      */
-    public function authenticateHistory(): Response
+    public function authenticateHistory(Repository\Security\AccountAuthenticationHistoryRepository $repository): Response
     {
         $params = [];
-        $params['items'] = $this->getDoctrine()->getManager()->getRepository(AccountAuthenticationHistory::class)->findAll();
+        $params['items'] = $repository->findByUser($this->getUser());
 
         return $this->render('website/user/authenticate-history.html.twig', $params);
     }

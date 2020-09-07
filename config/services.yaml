@@ -39,11 +39,19 @@ services:
         resource: '../src/Website/Controller'
         tags: ['controller.service_arguments']
 
-
     YourFrog\Panel\Repository\Contest\SettingsRepository:
         factory: ['@doctrine.orm.default_entity_manager', getRepository]
         arguments:
             - YourFrog\Panel\Entity\Contest\Settings
+
+    YourFrog\App\Repository\Security\AccountAuthenticationHistoryRepository:
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - YourFrog\App\Entity\Security\AccountAuthenticationHistory
+
+    YourFrog\App\Security\CounterOfLoginFailsChecker:
+        arguments:
+            - "%app.security.maximum_login_fails%"
 
     YourFrog\App\Service\Authentication\StoreIP:
         class: YourFrog\App\Service\Authentication\KeepAuthentication
